@@ -1,19 +1,30 @@
-# madeupflix
+<h1 align="center">Welcome to madeupflix 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-## Project setup
-```
+> Your Reliable On The Fly Anime Services!
+
+## Install
+
+```sh
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## Usage
+
+```sh
+npm run dev # or npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Author
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+👤 **madeupflix**
+
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
