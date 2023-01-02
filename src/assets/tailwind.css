@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .nav-link {
+    @apply block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700;
+  }
+
+  .nav-link.active {
+    @apply text-blue-700;
+  }
+
+  .break-inside {
+    break-inside: avoid;
+  }
+
+  a.pretty-link {
+    text-decoration: none;
+    position: relative;
+  }
+
+  a.pretty-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    width: 100%;
+    height: 8px;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    @apply bg-indigo-600 rounded-sm;
+  }
+
+  a.pretty-link:hover::before {
+    bottom: 0;
+    height: 100%;
+  }
+
+  p,
+  h1 {
+    @apply whitespace-normal;
+  }
+
+  section {
+    @apply bg-base-100;
+  }
+
+  body {
+    @apply bg-base-100;
+  }
+
+  .card .card-image-container {
+    @apply inline-block overflow-hidden w-fit rounded-xl;
+  }
+  .card .card-image-container img {
+    @apply block transition-transform duration-300 will-change-transform rounded-xl;
+  }
+  .card .card-image-container:hover img {
+    @apply origin-center scale-110;
+  }
+}
