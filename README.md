@@ -11,6 +11,8 @@
 ## Install
 
 ```sh
+git clone https://github.com/KevinNVM/madeupflix
+cd madeupflix
 npm install
 ```
 
