@@ -25,6 +25,7 @@ npm run dev # or npm run serve
 ## Author
 
 👤 **madeupflix**
+
 👤 **kevinnvm**
 
 ## To-Do
