@@ -29,9 +29,9 @@ npm run dev # or npm run serve
 👤 **kevinnvm**
 
 ## To-Do
-1. +Feature - last watched where user can go back to last watched content and save last duration time
-2. +Feature - bookmark/favorite system
-3. +Feature - content history or search history system
+1. Feature - last watched where user can go back to last watched content and save last duration time
+2. Feature - bookmark/favorite system
+3. Feature - content history or search history system
 4. Optimize - watch view design
 5. Optimize - passing props to component on watch view
 
