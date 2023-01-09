@@ -1,11 +1,15 @@
 <template>
-  <Navbar />
+  <header>
+    <Navbar />
+  </header>
   <main>
     <router-view />
   </main>
 </template>
 
 <script>
+import { clear } from "idb-keyval";
+import Footer from "./components/Footer.vue";
 import Navbar from "./components/Navbar.vue";
 import { getSettings } from "./modules/userSettings";
 
@@ -16,9 +20,11 @@ export default {
       userSettings: getSettings() || {},
     };
   },
-  components: { Navbar },
+  components: { Navbar, Footer },
   mounted() {
-    console.log(this.userSettings);
+    window.clearCache = () => {
+      clear();
+    };
   },
 };
 </script>

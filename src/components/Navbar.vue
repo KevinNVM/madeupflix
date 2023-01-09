@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed z-50 transition-all duration-300 navbar bg-base-100"
+    class="fixed z-50 transition-all duration-300 navbar bg-primary"
     :class="
       showNavbar
         ? 'bg-opacity-75 backdrop-blur-sm drop-shadow-sm'
@@ -8,7 +8,10 @@
     "
   >
     <div class="navbar-start">
-      <button class="btn btn-ghost btn-circle">
+      <button
+        @click="$router.push({ name: 'search' })"
+        class="btn btn-ghost btn-circle"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-5 h-5"
@@ -45,10 +48,12 @@
       </button>
     </div>
     <div class="navbar-center">
-      <a
+      <button
+        @click="$router.go(-1)"
         class="text-2xl font-extrabold text-transparent normal-case  btn btn-ghost md:text-3xl bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-500"
-        >MadeupFlix</a
       >
+        MadeupFlix
+      </button>
     </div>
 
     <div class="navbar-end">
@@ -76,6 +81,9 @@
           <li><a>Homepage</a></li>
           <li><a>Portfolio</a></li>
           <li><a>About</a></li>
+          <li>
+            <a>{{ time }}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -83,25 +91,44 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "Navbar",
   data() {
     return {
       showNavbar: false,
+      interval: null,
+      time: null,
     };
   },
   methods: {
     checkNavbar() {
-      window.onscroll = () => {
-        var pageOffset =
-          document.documentElement.scrollTop || document.body.scrollTop;
-        this.showNavbar = pageOffset > 200;
-      };
-    },
+            window.onscroll = () => {
+                var pageOffset = document.documentElement.scrollTop || document.body.scrollTop;
+                this.showNavbar = pageOffset > 50;
+            };
+        },
+    // prettier-ignore
+  },
+  beforeDestroy() {
+    // prevent memory leak
+    clearInterval(this.interval);
   },
   mounted() {
     this.checkNavbar();
+    // update the time every second
+    this.interval = setInterval(() => {
+      // Concise way to format time according to system locale.
+      // In my case this returns "3:48:00 am"
+      this.time = Intl.DateTimeFormat(navigator.language, {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      }).format();
+    });
   },
+  components: { router },
 };
 </script>
 

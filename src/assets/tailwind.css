@@ -43,11 +43,11 @@
   }
 
   section {
-    @apply bg-base-100;
+    @apply bg-primary;
   }
 
   body {
-    @apply bg-base-100;
+    @apply bg-primary;
   }
 
   .card .card-image-container {
@@ -58,5 +58,15 @@
   }
   .card .card-image-container:hover img {
     @apply origin-center scale-110;
+  }
+  .card .small-info {
+    @apply font-semibold transition-opacity duration-300 opacity-0;
+  }
+  .card:hover .small-info {
+    @apply opacity-100;
+  }
+
+  *[type="button"] {
+    @apply cursor-pointer select-none;
   }
 }

@@ -4,12 +4,7 @@
     :style="`background-image: url('${heroContent.image}'); background-size: cover; background-position: center top`"
   >
     <div
-      class="
-        hero-overlay
-        bg-opacity-60 bg-gradient-to-t
-        from-base-100
-        to-black/0
-      "
+      class=" hero-overlay bg-opacity-60 bg-gradient-to-t from-primary to-black/0"
     ></div>
     <div class="hero-content">
       <figure class="max-w-screen-md mx-auto text-center">
@@ -32,12 +27,7 @@
         </blockquote>
         <figcaption class="flex items-center justify-center mt-6 space-x-3">
           <div
-            class="
-              flex
-              items-center
-              divide-x-2 divide-gray-500
-              dark:divide-gray-700
-            "
+            class="flex items-center divide-x-2 divide-gray-500  dark:divide-gray-700"
           >
             <cite class="pr-3 font-medium text-white">{{
               heroContent.quotes.character
@@ -46,6 +36,7 @@
               class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400"
             >
               <a
+                target="_blank"
                 :href="`https://myanimelist.net/anime.php?q=${heroContent.quotes.anime}&cat=anime`"
                 >{{ heroContent.quotes.anime }}</a
               >
@@ -58,7 +49,12 @@
 </template>
 
 <script>
-import { toObject } from "@/modules/toObject";
+// import { toObject } from "@/modules/toObject";
+import {
+  deleteHeroSection,
+  getHeroSection,
+  setHeroSection,
+} from "@/store/heroSection";
 
 export default {
   name: "HeroSection",
@@ -85,14 +81,24 @@ export default {
     async getHeroQuotes() {
       let res = await fetch(`https://katanime.vercel.app/api/getrandom`);
       let data = await res.json();
-      if (data.sukses) return data.result;
-      else return {};
+      if (!data.sukses) return false;
+      return data.result;
+    },
+    async updateHeroContent() {
+      let exist = await getHeroSection();
+      if (
+        JSON.stringify(exist) == "{}" ||
+        this.heroContent.expired_at > new Date()
+      )
+        setHeroSection({
+          image: await this.getHeroImage(),
+          quotes: (await this.getHeroQuotes())[0],
+        });
+      this.heroContent = await getHeroSection();
     },
   },
   async mounted() {
-    // this.heroContent.image = await this.getHeroImage();
-    this.heroContent.quotes = (await this.getHeroQuotes())[0];
-    // console.log(toObject(this.heroContent));
+    await this.updateHeroContent();
   },
 };
 </script>
